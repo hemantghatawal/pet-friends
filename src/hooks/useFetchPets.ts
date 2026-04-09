@@ -1,7 +1,14 @@
 import { useState, useEffect } from "react";
 import type { Pet } from "../types/pet.types";
 
-function useFetchPets() {
+interface UseFetchPetsResult {
+  pets: Pet[];
+  loading: boolean;
+  error: string | null;
+  isEmpty: boolean;
+}
+
+function useFetchPets(): UseFetchPetsResult {
   const [pets, setPets] = useState<Pet[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -22,7 +29,7 @@ function useFetchPets() {
       });
   }, []);
 
-  return { pets, loading, error };
+  return { pets, loading, error, isEmpty: !loading && !error && pets.length === 0 };
 }
 
 export default useFetchPets;

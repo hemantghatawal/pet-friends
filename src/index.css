@@ -1,35 +1,7 @@
-/* Reset */
+/* Global reset only — layout is handled by styled-components */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: system-ui, Arial, sans-serif;
-}
-
-.center {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 16px;
-}
-
-/* Default → Desktop (4 columns) */
-.pet-grid {
-  display: grid;
-  gap: 16px;
-  padding: 16px;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-/* Tablet → 2 columns */
-@media (max-width: 1024px) {
-  .pet-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Mobile → 1 column */
-@media (max-width: 640px) {
-  .pet-grid {
-    grid-template-columns: 1fr;
-  }
 }
