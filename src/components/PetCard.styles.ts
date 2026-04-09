@@ -27,7 +27,6 @@ export const CheckboxWrapper = styled.label`
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-  transition: background 0.15s;
 
   &:hover {
     background: #fff;
@@ -46,7 +45,6 @@ export const CheckboxWrapper = styled.label`
     border-radius: 3px;
     border: 2px solid #aaa;
     background: transparent;
-    transition: background 0.15s, border-color 0.15s;
     display: block;
   }
 
