@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Article = styled.article`
   background: #fff;
@@ -58,13 +59,16 @@ export const CheckboxWrapper = styled.label`
   }
 `;
 
-export const CardImage = styled.div`
+export const CardImage = styled(Link)`
+  display: block;
   img {
     width: 100%;
     height: 200px;
     object-fit: cover;
     display: block;
+    transition: opacity 0.15s;
   }
+  &:hover img { opacity: 0.9; }
 `;
 
 export const CardBody = styled.div`

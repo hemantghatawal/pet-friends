@@ -37,7 +37,7 @@ const PetCard = memo(({ pet, isSelected, onToggle }: PetCardProps) => {
         <span />
       </CheckboxWrapper>
 
-      <CardImage>
+      <CardImage to={`/pets/${btoa(pet.url)}`}>
         <img src={pet.url} alt={pet.title} loading="lazy" />
       </CardImage>
       <CardBody>
