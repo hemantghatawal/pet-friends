@@ -20,12 +20,12 @@ export const SortBtn = styled.button<{ $active: boolean }>`
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
-  border: 1.5px solid ${({ $active }) => ($active ? "#166534" : "#d1d5db")};
-  background: ${({ $active }) => ($active ? "#166534" : "#fff")};
+  border: 1.5px solid ${({ $active }) => ($active ? "var(--color-primary)" : "#d1d5db")};
+  background: ${({ $active }) => ($active ? "var(--color-primary)" : "#fff")};
   color: ${({ $active }) => ($active ? "#fff" : "#374151")};
 
   &:hover:not([aria-pressed="true"]) {
-    border-color: #166534;
-    color: #166534;
+    border-color: var(--color-primary);
+    color: var(--color-primary);
   }
 `;

@@ -1,13 +1,16 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import useFetchPets from "../hooks/useFetchPets";
 import {
     Wrapper, BackLink, Card, HeroImage,
     Body, Title, DateLabel, Description, NotFound,
     Head,
+    HeadContent,
+    HeadBackLink,
 } from "./PetDetailPage.styles";
 
 export default function PetDetailPage() {
     const { id } = useParams<{ id: string }>();
+    const navigate = useNavigate();
     const { pets, loading, error } = useFetchPets();
 
     if (loading) return <Wrapper><p>Loading…</p></Wrapper>;
@@ -32,14 +35,23 @@ export default function PetDetailPage() {
 
     return (
         <Wrapper>
-            <BackLink to="/">← Back to Gallery</BackLink>
             <Card>
+                <HeadBackLink>
+                    <BackLink to="#" onClick={() => navigate(-1)}>
+                        ← Back
+                    </BackLink>
+                </HeadBackLink>
                 <Head>
-                    <Title>{pet.title} </Title>
-                    <DateLabel dateTime={pet.created}>Added {formattedDate}</DateLabel>
+
+                    <HeadContent>
+                        <Title>{pet.title}</Title>
+                        <Description>{pet.description}</Description>
+                        <DateLabel dateTime={pet.created}>
+                            {formattedDate}
+                        </DateLabel>
+                    </HeadContent>
                 </Head>
                 <Body>
-                    <Description>{pet.description}</Description>
                     <HeroImage src={pet.url} alt={pet.title} />
                 </Body>
             </Card>

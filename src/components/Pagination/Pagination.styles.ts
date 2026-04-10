@@ -13,8 +13,8 @@ export const PageBtn = styled.button<{ $active?: boolean }>`
   height: 36px;
   padding: 0 10px;
   border-radius: 8px;
-  border: 1.5px solid ${({ $active }) => ($active ? "#166534" : "#d1d5db")};
-  background: ${({ $active }) => ($active ? "#166534" : "#fff")};
+  border: 1.5px solid ${({ $active }) => ($active ? "#var(--color-primary)4" : "#d1d5db")};
+  background: ${({ $active }) => ($active ? "var(--color-primary)" : "#fff")};
   color: ${({ $active }) => ($active ? "#fff" : "#374151")};
   font-size: 14px;
   font-weight: 500;
@@ -22,8 +22,8 @@ export const PageBtn = styled.button<{ $active?: boolean }>`
   transition: background 0.15s, border-color 0.15s;
 
   &:hover:not(:disabled) {
-    border-color: #166534;
-    color: ${({ $active }) => ($active ? "#fff" : "#166534")};
+    border-color: var(--color-primary);
+    color: ${({ $active }) => ($active ? "#fff" : "var(--color-primary)")};
   }
 
   &:disabled {

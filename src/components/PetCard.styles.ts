@@ -25,7 +25,7 @@ export const Article = styled.article`
   }
 
   &[data-selected="true"] {
-    outline: 3px solid #166534;
+    outline: 3px solid var(--color-primary);
     outline-offset: 3px;
     transform: rotate(0deg) scale(0.97);
   }
@@ -67,8 +67,8 @@ export const CheckboxWrapper = styled.label`
   }
 
   input:checked + span {
-    background: #166534;
-    border-color: #166534;
+    background: var(--color-primary);
+    border-color: var(--color-primary);
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4l3 3 5-6' stroke='%23fff' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: center;

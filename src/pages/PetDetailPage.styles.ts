@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Wrapper = styled.div`
-  max-width: 720px;
+  /* max-width: 720px; */
   margin: 40px auto;
   padding: 0 16px;
 `;
@@ -12,10 +12,9 @@ export const BackLink = styled(Link)`
   align-items: center;
   gap: 6px;
   font-size: 14px;
-  color: #166534;
+  color: var(--color-primary);
   text-decoration: none;
   font-weight: 500;
-  margin-bottom: 24px;
 
   &:hover { text-decoration: underline; }
 `;
@@ -38,14 +37,38 @@ export const HeroImage = styled.img`
 `;
 
 export const Head = styled.div`
-display: flex;
-justify-content: space-between;
-align-items: center;
-  padding: 24px;
+  position: relative;
+  display: flex;
+  justify-content: center;   
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid #f3f4f6;
+`;
+
+export const HeadBackLink = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid #f3f4f6;
+`;
+
+
+export const HeadContent = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  max-width: 800px;   /* 👈 fixed width */
+  width: 100%;
+  justify-content: space-between;
+  text-align: center;
 `;
 
 export const Body = styled.div`
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  gap: 20px;
 `;
 
 export const Title = styled.h1`

@@ -15,7 +15,7 @@ export const Bar = styled.div`
   gap: 16px;
   padding: 14px 20px;
   border-radius: 14px;
-  background: #166534;
+  background: var(--color-primary);
   color: #fff;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
   white-space: nowrap;
@@ -74,8 +74,8 @@ export const DownloadBtn = styled.button`
   padding: 7px 16px;
   border-radius: 8px;
   border: none;
-  background: #16a34a;
-  color: #fff;
+  background: var(--color-secondary);
+  color: #000;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
