@@ -72,6 +72,29 @@ export const Body = styled.div`
   gap: 20px;
 `;
 
+export const ImageWrapper = styled.div`
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const DownloadBtn = styled.a`
+  margin-top: 12px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  backdrop-filter: blur(4px);
+  transition: background 0.15s;
+  cursor: pointer;
+
+  &:hover { background: rgba(0, 0, 0, 0.75); }
+`;
+
 export const Title = styled.h1`
   font-size: 26px;
   font-weight: 700;

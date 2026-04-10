@@ -5,7 +5,10 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 24px 16px 48px;
+  padding: 48px 32px 150px; 
+  @media (min-width: 601px) {
+    padding: 24px 50px 100px;
+  }
 `;
 
 export const PageBtn = styled.button<{ $active?: boolean }>`

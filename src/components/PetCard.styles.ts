@@ -122,7 +122,7 @@ export const CardDesc = styled.p`
 
 export const CardDate = styled.time`
   font-size: 11px;
-  color: #aaa;
+  color: #312c2cff;
   font-family: "Courier New", Courier, monospace;
   white-space: nowrap;
 `;

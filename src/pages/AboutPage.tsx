@@ -16,7 +16,7 @@ const TECH = ["React 19", "TypeScript", "styled-components", "react-router-dom",
 export default function AboutPage() {
     return (
         <Wrapper>
-            <Heading>Hi, I'm [Your Name] 👋</Heading>
+            <Heading>Hi, I'm Hemant Ghatawal 👋</Heading>
             <Sub>
                 I'm a front-end developer who enjoys building clean, performant, and
                 well-structured UIs. This project was built as part of a front-end
