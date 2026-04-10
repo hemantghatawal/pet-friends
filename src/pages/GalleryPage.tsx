@@ -1,17 +1,17 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import useFetchPets from "../hooks/useFetchPets";
 import PetCard from "../components/PetCard";
 import SelectionBar from "../components/SelectionBar/SelectionBar";
 import SortBar from "../components/SortBar/SortBar";
 import SearchBar from "../components/SearchBar/SearchBar";
 import Pagination from "../components/Pagination/Pagination";
+import SkeletonCard from "../components/SkeletonCard/SkeletonCard";
 import { useSelection } from "../context/SelectionContext";
 import { downloadImages, formatBytes } from "../utils/download.utils";
-import { ESTIMATED_SIZE_PER_IMAGE } from "../constants";
+import { ESTIMATED_SIZE_PER_IMAGE, PAGE_SIZE } from "../constants";
 import type { SortOption } from "../constants";
 import { PageWrapper, PetGrid, Message } from "../App.styles";
 
-const PAGE_SIZE = 8;
 
 export default function GalleryPage() {
     const { pets, loading, error, isEmpty } = useFetchPets();
@@ -48,13 +48,11 @@ export default function GalleryPage() {
 
     const totalPages = Math.ceil(filteredSorted.length / PAGE_SIZE);
 
-    // Reset to page 1 whenever search or sort changes
-    useEffect(() => { setPage(1); }, [query, sort]);
-
     // Slice the current page out of the full filtered+sorted list
     const displayedPets = useMemo(() => {
         const start = (page - 1) * PAGE_SIZE;
-        return filteredSorted.slice(start, start + PAGE_SIZE);
+        const end = start + PAGE_SIZE
+        return filteredSorted.slice(start, end);
     }, [filteredSorted, page]);
 
     const handleDownload = async () => {
@@ -66,7 +64,7 @@ export default function GalleryPage() {
     const estimatedSize = formatBytes(selected.size * ESTIMATED_SIZE_PER_IMAGE);
 
     function renderContent() {
-        if (loading) return <Message>Loading pets...</Message>;
+        if (loading) return <>{Array.from({ length: PAGE_SIZE }).map((_, i) => <SkeletonCard key={i} />)}</>;
         if (error) return <Message $error>Error: {error}</Message>;
         if (isEmpty) return <Message>No pets found 🐾</Message>;
         if (filteredSorted.length === 0) return <Message>No results for "{query}" 🔍</Message>;
@@ -99,7 +97,7 @@ export default function GalleryPage() {
                 estimatedSize={estimatedSize}
                 onDownload={handleDownload}
                 onClear={clearSelection}
-                onSelectAll={() => selectAll(pets.map((p) => p.url))}
+                onSelectAll={() => selectAll(filteredSorted.map((p) => p.url))}
                 downloading={downloading}
             />
         </PageWrapper>

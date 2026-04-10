@@ -1,29 +1,30 @@
-import { Wrapper, Heading, Sub, FeatureList, FeatureItem } from "./AboutPage.styles";
+import { Wrapper, Heading, Sub, FeatureList, FeatureItem, TechStack, TechTag, Links, LinkBtn } from "./AboutPage.styles";
 
 const FEATURES = [
-    { icon: "🖼️", text: "Browse a gallery of pets fetched from a live API" },
+    { icon: "🖼️", text: "Pet gallery fetched from a live API with loading skeletons" },
     { icon: "☑️", text: "Select multiple images and download them in one click" },
-    { icon: "🔍", text: "Search pets by name or description in real time" },
-    { icon: "↕️", text: "Sort by name or date in either direction" },
-    { icon: "📄", text: "View a full detail page for each pet" },
-    { icon: "📱", text: "Fully responsive — works on mobile, tablet, and desktop" },
+    { icon: "🔍", text: "Real-time search filtering by name or description" },
+    { icon: "↕️", text: "Sort by name A-Z / Z-A or date newest / oldest" },
+    { icon: "📄", text: "Detail view for each pet with dynamic routing" },
+    { icon: "📱", text: "Fully responsive — 1 column mobile, 2 tablet, 4 desktop" },
+    { icon: "💾", text: "Selection persists across route navigation via Context" },
+    { icon: "⚡", text: "Optimised with React.memo, useCallback, useMemo and data caching" },
 ];
+
+const TECH = ["React 19", "TypeScript", "styled-components", "react-router-dom", "Vite"];
 
 export default function AboutPage() {
     return (
         <Wrapper>
-            <Heading>About PetFriends</Heading>
+            <Heading>Hi, I'm [Your Name] 👋</Heading>
             <Sub>
-                PetFriends is a pet image gallery built with React, TypeScript, and
-                styled-components. It demonstrates modern front-end patterns including
-                custom hooks, context-based global state, dynamic routing, and
-                performance optimisation with memo and useMemo.
-            </Sub>
-            <Sub>
-                Built as part of a front-end challenge — focused on clean architecture,
-                scalability, and a smooth user experience.
+                I'm a front-end developer who enjoys building clean, performant, and
+                well-structured UIs. This project was built as part of a front-end
+                challenge — I used it as an opportunity to demonstrate my approach to
+                architecture, state management, and user experience.
             </Sub>
 
+            <Heading as="h2">What this app does</Heading>
             <FeatureList>
                 {FEATURES.map((f) => (
                     <FeatureItem key={f.text}>
@@ -32,6 +33,16 @@ export default function AboutPage() {
                     </FeatureItem>
                 ))}
             </FeatureList>
+
+            <Heading as="h2">Tech used</Heading>
+            <TechStack>
+                {TECH.map((t) => <TechTag key={t}>{t}</TechTag>)}
+            </TechStack>
+
+            <Links>
+                <LinkBtn href="https://github.com/hemantghatawal/" target="_blank" rel="noreferrer">GitHub</LinkBtn>
+                <LinkBtn href="https://linkedin.com/in/hemant-ghatawal" target="_blank" rel="noreferrer">LinkedIn</LinkBtn>
+            </Links>
         </Wrapper>
     );
 }
