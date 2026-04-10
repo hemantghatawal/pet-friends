@@ -15,6 +15,7 @@ export function SelectionProvider({ children }: { children: React.ReactNode }) {
     const toggleSelect = useCallback((url: string) => {
         setSelected((prev) => {
             const next = new Set(prev);
+            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
             next.has(url) ? next.delete(url) : next.add(url);
             return next;
         });
@@ -36,6 +37,7 @@ export function SelectionProvider({ children }: { children: React.ReactNode }) {
 }
 
 // Typed hook — throws if used outside provider
+// eslint-disable-next-line react-refresh/only-export-components
 export function useSelection() {
     const ctx = useContext(SelectionContext);
     if (!ctx) throw new Error("useSelection must be used within SelectionProvider");
