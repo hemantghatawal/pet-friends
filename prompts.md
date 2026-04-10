@@ -46,6 +46,7 @@ Check the whole project and let me know which steps were missed and what additio
 **Issues found and fixed:**
 - Deleted unused `src/App.css` and empty `src/components/Toolbar/` folder
 - Added loading skeleton cards (`SkeletonCard`) — replaces the plain "Loading pets..." text with animated shimmer placeholders matching the Polaroid card shape
+- Created `src/pages/NotFoundPage.tsx` — displays a large "404", a friendly message, and a link back to the gallery
 - Fixed `Select All` — previously selected all pets regardless of search/sort; now selects only the currently filtered results
 - Updated `AboutPage` to be a real About Me page with personal intro, tech stack tags, and GitHub/LinkedIn links
 - Updated `README.md` — replaced the Vite boilerplate with a proper project README covering features, setup, architecture decisions, and theming
