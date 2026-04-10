@@ -38,7 +38,7 @@ Preserve the page number when navigating to a detail page and back — clicking 
 
 ---
 
-## 6. Final Audits, Prompts.md and Fixes
+## 6. Final Audits, Skeleton Loader, Prompts.md and Fixes
 
 **Prompt:**
 Check the whole project and let me know which steps were missed and what additional things can be done.
@@ -50,3 +50,4 @@ Check the whole project and let me know which steps were missed and what additio
 - Fixed `Select All` — previously selected all pets regardless of search/sort; now selects only the currently filtered results
 - Updated `AboutPage` to be a real About Me page with personal intro, tech stack tags, and GitHub/LinkedIn links
 - Updated `README.md` — replaced the Vite boilerplate with a proper project README covering features, setup, architecture decisions, and theming
+- Added a `SkeletonDetailPage` component that mirrors the actual detail page layout (back link, title/description/date row, hero image block) using the same shimmer animation as the gallery skeletons; also added an individual download button overlaid on the bottom-right of the pet image on the detail page.
