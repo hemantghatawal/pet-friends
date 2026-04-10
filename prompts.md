@@ -25,3 +25,27 @@ Create a React Context for global state management using TypeScript. Set up the 
 
 **Prompt:**
 Review the entire codebase for code quality and performance improvements. Identify bad practices, suggest fixes, optimize performance where possible, improve readability and maintainability, and ensure everything follows modern React and TypeScript best practices without breaking existing functionality.
+
+## 5. Page Number Persistence
+
+**Prompt:**
+Preserve the page number when navigating to a detail page and back — clicking Back to Gallery should return to the same page.
+
+**What was done:**
+- Replaced `useState` for page with `useSearchParams` — page lives in the URL as `?page=2`
+- `navigate(-1)` in `PetDetailPage` pops back to the exact previous URL including the query param
+- `replace: true` in `setSearchParams` prevents pagination clicks from polluting browser history
+
+---
+
+## 6. Final Audits, Prompts.md and Fixes
+
+**Prompt:**
+Check the whole project and let me know which steps were missed and what additional things can be done.
+
+**Issues found and fixed:**
+- Deleted unused `src/App.css` and empty `src/components/Toolbar/` folder
+- Added loading skeleton cards (`SkeletonCard`) — replaces the plain "Loading pets..." text with animated shimmer placeholders matching the Polaroid card shape
+- Fixed `Select All` — previously selected all pets regardless of search/sort; now selects only the currently filtered results
+- Updated `AboutPage` to be a real About Me page with personal intro, tech stack tags, and GitHub/LinkedIn links
+- Updated `README.md` — replaced the Vite boilerplate with a proper project README covering features, setup, architecture decisions, and theming

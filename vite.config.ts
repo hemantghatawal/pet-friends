@@ -8,5 +8,4 @@ export default defineConfig({
     react(),
     babel({ presets: [reactCompilerPreset()] }),
   ],
-  base: "https://github.com/hemantghatawal/pet-friends"
 })

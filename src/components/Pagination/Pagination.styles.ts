@@ -13,7 +13,7 @@ export const PageBtn = styled.button<{ $active?: boolean }>`
   height: 36px;
   padding: 0 10px;
   border-radius: 8px;
-  border: 1.5px solid ${({ $active }) => ($active ? "#var(--color-primary)4" : "#d1d5db")};
+  border: 1.5px solid ${({ $active }) => ($active ? "var(--color-primary)" : "#d1d5db")};
   background: ${({ $active }) => ($active ? "var(--color-primary)" : "#fff")};
   color: ${({ $active }) => ($active ? "#fff" : "#374151")};
   font-size: 14px;
