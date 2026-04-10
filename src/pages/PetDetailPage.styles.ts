@@ -23,7 +23,8 @@ export const Card = styled.div`
   background: #fff;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+  /* box-shadow: 0 4px 24px rgba(0,0,0,0.1); */
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 `;
 
 export const HeroImage = styled.img`
@@ -57,7 +58,7 @@ export const HeadContent = styled.div`
   align-items: center;
   gap: 16px;
 
-  max-width: 800px;   /* 👈 fixed width */
+  max-width: 800px; 
   width: 100%;
   justify-content: space-between;
   text-align: center;

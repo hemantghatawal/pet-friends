@@ -2,8 +2,9 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
 export const Nav = styled.nav`
-  background: var(--color-primary);
-  color: #fff;
+  /* background: var(--color-primary); */
+  background-image: linear-gradient(120deg, #8fd3f4 0%,   #84fab0 100%);
+  color: #000;
   padding: 0 24px;
   display: flex;
   align-items: center;
@@ -18,7 +19,7 @@ export const Nav = styled.nav`
 export const Brand = styled(NavLink)`
   font-size: 18px;
   font-weight: 700;
-  color: #fff;
+  color: #000;
   text-decoration: none;
   letter-spacing: -0.3px;
 `;
@@ -33,17 +34,17 @@ export const StyledNavLink = styled(NavLink)`
   border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
-  color: rgba(255,255,255,0.8);
+  /* color: rgba(255,255,255,0.8); */
   text-decoration: none;
   transition: background 0.15s, color 0.15s;
 
   &:hover {
-    background: rgba(255,255,255,0.12);
+    background: var(--color-primary);
     color: #fff;
   }
-
+  
   &.active {
-    background: rgba(255,255,255,0.18);
+    background: var(--color-primary);
     color: #fff;
   }
 `;
