@@ -3,6 +3,7 @@ import useFetchPets from "../hooks/useFetchPets";
 import {
     Wrapper, BackLink, Card, HeroImage,
     Body, Title, DateLabel, Description, NotFound,
+    Head,
 } from "./PetDetailPage.styles";
 
 export default function PetDetailPage() {
@@ -33,11 +34,13 @@ export default function PetDetailPage() {
         <Wrapper>
             <BackLink to="/">← Back to Gallery</BackLink>
             <Card>
-                <HeroImage src={pet.url} alt={pet.title} />
-                <Body>
-                    <Title>{pet.title}</Title>
+                <Head>
+                    <Title>{pet.title} </Title>
                     <DateLabel dateTime={pet.created}>Added {formattedDate}</DateLabel>
+                </Head>
+                <Body>
                     <Description>{pet.description}</Description>
+                    <HeroImage src={pet.url} alt={pet.title} />
                 </Body>
             </Card>
         </Wrapper>

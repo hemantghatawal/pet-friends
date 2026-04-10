@@ -8,6 +8,7 @@ export default function Navbar() {
                 <StyledNavLink to="/" end>Gallery</StyledNavLink>
                 <StyledNavLink to="/about">About</StyledNavLink>
             </Links>
+            <div> </div>
         </Nav>
     );
 }

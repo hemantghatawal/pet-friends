@@ -8,24 +8,37 @@ interface UseFetchPetsResult {
   isEmpty: boolean;
 }
 
+// Module-level cache — survives component unmounts so navigating away and back
+// doesn't trigger a new network request
+let cachedPets: Pet[] | null = null;
+let fetchPromise: Promise<Pet[]> | null = null;
+
 function useFetchPets(): UseFetchPetsResult {
-  const [pets, setPets] = useState<Pet[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [pets, setPets] = useState<Pet[]>(cachedPets ?? []);
+  const [loading, setLoading] = useState(cachedPets === null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("https://eulerity-hackathon.appspot.com/pets")
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch pets");
-        return res.json();
-      })
-      .then((data: Pet[]) => {
+    if (cachedPets !== null) return; // already have data, skip fetch
+
+    if (!fetchPromise) {
+      fetchPromise = fetch("https://eulerity-hackathon.appspot.com/pets")
+        .then((res) => {
+          if (!res.ok) throw new Error("Failed to fetch pets");
+          return res.json() as Promise<Pet[]>;
+        });
+    }
+
+    fetchPromise
+      .then((data) => {
+        cachedPets = data;
         setPets(data);
         setLoading(false);
       })
       .catch((err: Error) => {
         setError(err.message);
         setLoading(false);
+        fetchPromise = null; // allow retry on error
       });
   }, []);
 

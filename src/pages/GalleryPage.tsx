@@ -1,14 +1,17 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import useFetchPets from "../hooks/useFetchPets";
 import PetCard from "../components/PetCard";
 import SelectionBar from "../components/SelectionBar/SelectionBar";
 import SortBar from "../components/SortBar/SortBar";
 import SearchBar from "../components/SearchBar/SearchBar";
+import Pagination from "../components/Pagination/Pagination";
 import { useSelection } from "../context/SelectionContext";
 import { downloadImages, formatBytes } from "../utils/download.utils";
 import { ESTIMATED_SIZE_PER_IMAGE } from "../constants";
 import type { SortOption } from "../constants";
 import { PageWrapper, PetGrid, Message } from "../App.styles";
+
+const PAGE_SIZE = 8;
 
 export default function GalleryPage() {
     const { pets, loading, error, isEmpty } = useFetchPets();
@@ -16,13 +19,15 @@ export default function GalleryPage() {
     const [downloading, setDownloading] = useState(false);
     const [sort, setSort] = useState<SortOption>("name-asc");
     const [query, setQuery] = useState("");
+    const [page, setPage] = useState(1);
 
     const petsWithTs = useMemo(
         () => pets.map((p) => ({ ...p, ts: new Date(p.created).getTime() })),
         [pets]
     );
 
-    const displayedPets = useMemo(() => {
+    // Filter + sort over the full list
+    const filteredSorted = useMemo(() => {
         const q = query.trim().toLowerCase();
         const filtered = q
             ? petsWithTs.filter(
@@ -41,6 +46,17 @@ export default function GalleryPage() {
         }
     }, [petsWithTs, sort, query]);
 
+    const totalPages = Math.ceil(filteredSorted.length / PAGE_SIZE);
+
+    // Reset to page 1 whenever search or sort changes
+    useEffect(() => { setPage(1); }, [query, sort]);
+
+    // Slice the current page out of the full filtered+sorted list
+    const displayedPets = useMemo(() => {
+        const start = (page - 1) * PAGE_SIZE;
+        return filteredSorted.slice(start, start + PAGE_SIZE);
+    }, [filteredSorted, page]);
+
     const handleDownload = async () => {
         setDownloading(true);
         await downloadImages(pets, selected);
@@ -53,7 +69,7 @@ export default function GalleryPage() {
         if (loading) return <Message>Loading pets...</Message>;
         if (error) return <Message $error>Error: {error}</Message>;
         if (isEmpty) return <Message>No pets found 🐾</Message>;
-        if (displayedPets.length === 0) return <Message>No results for "{query}" 🔍</Message>;
+        if (filteredSorted.length === 0) return <Message>No results for "{query}" 🔍</Message>;
 
         return displayedPets.map((pet) => (
             <PetCard
@@ -70,6 +86,12 @@ export default function GalleryPage() {
             <SearchBar value={query} onChange={setQuery} />
             <SortBar value={sort} onChange={setSort} />
             <PetGrid>{renderContent()}</PetGrid>
+
+            <Pagination
+                currentPage={page}
+                totalPages={totalPages}
+                onPageChange={setPage}
+            />
 
             <SelectionBar
                 count={selected.size}

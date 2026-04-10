@@ -6,7 +6,6 @@ import {
   CardImage,
   CardBody,
   CardTitle,
-  CardDesc,
   CardDate,
 } from "./PetCard.styles";
 
@@ -41,11 +40,15 @@ const PetCard = memo(({ pet, isSelected, onToggle }: PetCardProps) => {
         <img src={pet.url} alt={pet.title} loading="lazy" />
       </CardImage>
       <CardBody>
-        <CardTitle>{pet.title}</CardTitle>
-        <CardDesc>{pet.description}</CardDesc>
+        <CardTitle>
+          {pet.title}
+
+        </CardTitle>
         {formattedDate && (
-          <CardDate dateTime={pet.created}>Added {formattedDate}</CardDate>
+          <CardDate dateTime={pet.created}>{formattedDate}</CardDate>
         )}
+
+        {/* <CardDesc>{pet.description}</CardDesc> */}
       </CardBody>
     </Article>
   );

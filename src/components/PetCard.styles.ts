@@ -2,22 +2,39 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Article = styled.article`
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background: #fffef9;
+  border-radius: 4px;
   position: relative;
+  /* Polaroid: equal padding on sides/top, more at bottom */
+  padding: 10px 10px 40px;
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 10px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  /* Slight random tilt per card using nth-child for variety */
+  &:nth-child(odd)  { transform: rotate(-1deg); }
+  &:nth-child(even) { transform: rotate(0.8deg); }
+
+  &:hover {
+    transform: rotate(0deg) translateY(-6px) scale(1.02);
+    box-shadow:
+      0 8px 16px rgba(0, 0, 0, 0.15),
+      0 20px 40px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+  }
 
   &[data-selected="true"] {
     outline: 3px solid #166534;
-    transform: scale(0.98);
+    outline-offset: 3px;
+    transform: rotate(0deg) scale(0.97);
   }
 `;
 
 export const CheckboxWrapper = styled.label`
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 14px;
+  left: 14px;
   z-index: 2;
   cursor: pointer;
   display: flex;
@@ -26,12 +43,11 @@ export const CheckboxWrapper = styled.label`
   width: 24px;
   height: 24px;
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  transition: background 0.15s;
 
-  &:hover {
-    background: #fff;
-  }
+  &:hover { background: #fff; }
 
   input {
     position: absolute;
@@ -47,6 +63,7 @@ export const CheckboxWrapper = styled.label`
     border: 2px solid #aaa;
     background: transparent;
     display: block;
+    transition: background 0.15s, border-color 0.15s;
   }
 
   input:checked + span {
@@ -59,35 +76,53 @@ export const CheckboxWrapper = styled.label`
   }
 `;
 
+/* Image fills the inner frame — no border-radius, sharp edges like a photo print */
 export const CardImage = styled(Link)`
-  display: block;
+  display: flex;
+  justify-content: center;   /* horizontal center */
+  align-items: center;       /* vertical center (optional) */
+
   img {
-    width: 100%;
+    /* width: 100%; */
     height: 200px;
     object-fit: cover;
     display: block;
     transition: opacity 0.15s;
   }
-  &:hover img { opacity: 0.9; }
+
+  &:hover img { opacity: 0.92; }
 `;
 
+/* Bottom caption area — sits in the white border below the photo */
 export const CardBody = styled.div`
-  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 10px 2px 0;
 `;
 
 export const CardTitle = styled.h2`
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 600;
-  margin-bottom: 6px;
+  color: #333;
+  margin: 0;
+  font-family: "Courier New", Courier, monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
 `;
 
 export const CardDesc = styled.p`
-  font-size: 14px;
-  color: #555;
-  margin-bottom: 8px;
+  font-size: 12px;
+  color: #777;
+  margin: 4px 0 0;
+  font-family: "Courier New", Courier, monospace;
 `;
 
 export const CardDate = styled.time`
-  font-size: 12px;
-  color: #888;
+  font-size: 11px;
+  color: #aaa;
+  font-family: "Courier New", Courier, monospace;
+  white-space: nowrap;
 `;

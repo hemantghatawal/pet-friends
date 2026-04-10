@@ -28,17 +28,24 @@ export const Card = styled.div`
 `;
 
 export const HeroImage = styled.img`
-  width: 100%;
+  width: auto;
   max-height: 70vh;
   height: auto;
   object-fit: contain;
   display: block;
   background: #f9fafb;
-  border-radius: 15px;
+  border-radius: 15px
+`;
+
+export const Head = styled.div`
+display: flex;
+justify-content: space-between;
+align-items: center;
+  padding: 24px;
 `;
 
 export const Body = styled.div`
-  padding: 24px;
+
 `;
 
 export const Title = styled.h1`
